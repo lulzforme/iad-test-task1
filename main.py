@@ -10,7 +10,6 @@ plt.xlabel('Доллар')
 plt.ylabel('Цена')
 plt.grid(True)
 
-
 plt.gca().xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter('%d.%m.%Y'))
 plt.tight_layout()
 plt.legend()

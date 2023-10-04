@@ -6,7 +6,7 @@
 
 [Telegram](https://t.me/rus_keks59)
 
-Discord - ._keks_.
+Discord - glushkovbogdan
 
 ### Примечание
 Для связи со мной предпочтительно использовать [Telegram](https://t.me/rus_keks59).

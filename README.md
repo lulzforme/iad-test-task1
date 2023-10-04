@@ -1,4 +1,4 @@
-# iad-test-task1
+# test-GlushkovBogdanBorisovich - 1.0
 # Студент группы КС-21, ПНИПУ - Глушков Богдан Борисович.
 
 ## Social media

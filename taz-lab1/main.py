@@ -5,7 +5,7 @@ import datetime
 from matplotlib.dates import DateFormatter
 
 
-def draw_graph(col: list[dict]) -> None:
+def draw_graph(currency_col: list[dict]) -> None:
     ax = plt.figure().add_subplot(projection='3d')
     ax.set_xlabel("Дата")
     ax.set_ylabel("Курс доллара")
@@ -18,33 +18,33 @@ def draw_graph(col: list[dict]) -> None:
     y = []
     z = []
 
-    for i in col:
-        x.append(i.get("date"))
-        y.append(i.get("usd"))
-        z.append(i.get("delta"))
+    for item in currency_col:
+        x.append(item.get("date"))
+        y.append(item.get("usd"))
+        z.append(item.get("delta"))
 
     x_dates = matplotlib.dates.date2num(x)
     ax.plot(x_dates, y, z)
     plt.show()
 
 
-def get_calculated_delta_dict(col: list[dict]) -> list[dict]:
+def get_extended_usd_list(currency_col: list[dict]) -> list[dict]:
     new_col = []
     next_item = None
-    length = len(col)
+    length = len(currency_col)
     key = "usd"
-    for index, obj in enumerate(col):
+    for index, current_item in enumerate(currency_col):
         if index < (length - 1):
-            next_item = col[index + 1]
+            next_item = currency_col[index + 1]
 
-        prev_usd = obj[key]
+        prev_usd = current_item[key]
         current_usd = next_item[key]
-        new_col.append({**obj, "delta": (prev_usd - current_usd) / current_usd * 100})
+        new_col.append({**current_item, "delta": (prev_usd - current_usd) / current_usd * 100})
 
     return new_col
 
 
-def get_dict(prepared_dates: list) -> list[dict]:
+def get_usd_list(prepared_dates: list) -> list[dict]:
     col = []
     for current_date in prepared_dates:
         prepared_link = 'https://www.cbr-xml-daily.ru/archive/{}/{}/{}/daily_json.js'
@@ -64,7 +64,7 @@ def get_dict(prepared_dates: list) -> list[dict]:
 
 def get_dates() -> list[datetime]:
     count = 14
-    this_dates = []
+    these_dates = []
     date = datetime.datetime.today()
 
     for i in range(count):
@@ -74,13 +74,13 @@ def get_dates() -> list[datetime]:
         if prev_date.weekday() == 0 or prev_date.weekday() == 6:
             continue
 
-        this_dates.append(prev_date.date())
+        these_dates.append(prev_date.date())
 
-    return this_dates
+    return these_dates
 
 
 if __name__ == '__main__':
     dates = get_dates()
-    base_collection = get_dict(dates)
-    prepared_collection = get_calculated_delta_dict(base_collection)
+    base_collection = get_usd_list(dates)
+    prepared_collection = get_extended_usd_list(base_collection)
     draw_graph(prepared_collection)

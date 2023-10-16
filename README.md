@@ -1,5 +1,5 @@
 ## Входные данные
-![input.jpeg](../iad-test-task1(2)/input.png)
+![input.jpeg](input.png)
 ## Результат
-![result.jpeg](../iad-test-task1(2)/result.jpeg)
+![result.jpeg](result.jpeg)
 

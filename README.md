@@ -1,1 +1,3 @@
-# my IAD task 
+# my IAD task
+
+Smolyakov Ivan
